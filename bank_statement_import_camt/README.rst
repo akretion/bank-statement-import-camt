@@ -6,9 +6,6 @@ and it's dependancies *bank_statement_parse* (475 lines) and
 *bank_account_search* (90 lines), that currently support CAMT .053
 but not .052. I decided to write this alternative module for 2 reasons:
 
-* it was too difficult for me to add support for CAMT .052 in the
-current OCA module *bank_statement_parse_camt* ;
+* it was too difficult for me to add support for CAMT .052 in the current OCA module *bank_statement_parse_camt* ;
 
-* I think that the module *bank_statement_parse* is a sort of "framework"
-above the framework provided by the module *account_bank_statement_import*
-and that it is an unnecessary layer that we should not use any more.
+* I think that the module *bank_statement_parse* is a sort of "framework" above the framework provided by the module *account_bank_statement_import* and that it is an unnecessary layer that we should not use any more.
