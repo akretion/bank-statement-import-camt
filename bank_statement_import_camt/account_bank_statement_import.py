@@ -22,7 +22,7 @@
 
 import logging
 from lxml import etree
-from openerp import models, _
+from openerp import models, api, _
 from openerp.exceptions import Warning
 
 
@@ -32,7 +32,8 @@ _logger = logging.getLogger(__name__)
 class AccountBankStatementImport(models.TransientModel):
     _inherit = 'account.bank.statement.import'
 
-    def _check_camt(self, cr, uid, data_file, context=None):
+    @api.model
+    def _check_camt(self, data_file):
         try:
             root = etree.fromstring(
                 data_file, parser=etree.XMLParser(recover=True))
@@ -43,16 +44,16 @@ class AccountBankStatementImport(models.TransientModel):
             return False
         return root
 
-    def _parse_file(self, cr, uid, data_file, context=None):
+    @api.model
+    def _parse_file(self, data_file):
         """
         Parse the CAMT XML file
         """
-        camt = self._check_camt(
-            cr, uid, data_file, context=context)
+        camt = self._check_camt(data_file)
         if not camt:
             _logger.debug("Statement file was not a camt file.")
             return super(AccountBankStatementImport, self)._parse_file(
-                cr, uid, data_file, context=context)
+                data_file)
         ns = camt.tag[1:camt.tag.index("}")]
         camt_type = ns[36:39]
         assert camt_type in ('052', '053'), 'wrong camt type'

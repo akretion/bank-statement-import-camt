@@ -28,7 +28,7 @@
     'category': 'Accounting & Finance',
     'depends': ['account_bank_statement_import'],
     'demo': [
-        #'demo/demo_data.xml',
+        # 'demo/demo_data.xml',
     ],
     'installable': True,
 }
