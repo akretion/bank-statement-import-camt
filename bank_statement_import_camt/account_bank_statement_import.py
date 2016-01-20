@@ -97,7 +97,9 @@ class AccountBankStatementImport(models.TransientModel):
             entry_partner_name = entry.xpath(
                 'ns:NtryDtls//ns:RltdPties/ns:%s/ns:Nm' % partner_tag,
                 namespaces={'ns': ns})
-            partner_name = entry_partner_name[0].text
+            partner_name = ""
+            if len(entry_partner_name) > 0:
+                partner_name = entry_partner_name[0].text
             entry_rmtinfo = entry.xpath(
                 'ns:NtryDtls//ns:RmtInf/ns:Ustrd', namespaces={'ns': ns})
             label = ' '.join(line.text for line in entry_rmtinfo)
