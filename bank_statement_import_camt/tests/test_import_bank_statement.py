@@ -1,27 +1,7 @@
 # -*- coding: utf-8 -*-
-"""Run test to import camt.053 import."""
-##############################################################################
-#
-#    Copyright (C) 2015 Therp BV <http://therp.nl>.
-#
-#    All other contributions are (C) by their respective contributors
-#
-#    All Rights Reserved
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# © 2015-2016 Therp BV <http://therp.nl>.
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
 from openerp.tests.common import TransactionCase
 from openerp.modules.module import get_module_resource
 
@@ -64,5 +44,3 @@ class TestStatementFile(TransactionCase):
             'Real end balance %f not equal to 15121.12' %
             statement_obj.balance_end_real
         )
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
