@@ -3,6 +3,7 @@
 #    CAMT .052+.053 import module for Odoo
 #    Copyright (C) 2015 Akretion (http://www.akretion.com)
 #    @author Alexis de Lattre <alexis.delattre@akretion.com>
+#    @author Valentin Thirion <valentin.thirion@abakusitsolutions.eu>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -21,10 +22,10 @@
 {
     'name': 'CAMT Bank Statements Import',
     'summary': 'Imports CAMT .052 and .053 XML files in Odoo',
-    'version': '0.3',
+    'version': '9.0.1.0.1',
     'license': 'AGPL-3',
-    'author': 'Akretion',
-    'website': 'http://www.akretion.com/',
+    'author': 'Akretion, AbAKUS it-solutions',
+    'website': 'http://www.akretion.com/; http://www.abakusitsolutions.eu',
     'category': 'Accounting & Finance',
     'depends': ['account_bank_statement_import'],
     'demo': [
