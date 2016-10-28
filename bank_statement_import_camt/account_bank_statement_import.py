@@ -63,10 +63,17 @@ class AccountBankStatementImport(models.TransientModel):
             body_tag = 'Stmt'
         iban_xpath = camt.xpath(
             '//ns:%s/ns:Acct/ns:Id/ns:IBAN' % body_tag, namespaces={'ns': ns})
+        # Account number
         account_number = iban_xpath[0].text
+        # Statement name
         statement_name_xpath = camt.xpath(
             '//ns:GrpHdr/ns:MsgId', namespaces={'ns': ns})
         statement_name = statement_name_xpath[0].text
+        # Statement date
+        statement_date_xpath = camt.xpath(
+            '//ns:GrpHdr/ns:CreDtTm', namespaces={'ns': ns})
+        statement_date = statement_date_xpath[0].text
+        
         currency = False
         transactions = []
         camt_entries = camt.xpath(
@@ -117,6 +124,7 @@ class AccountBankStatementImport(models.TransientModel):
             'transactions': transactions,
             'balance_start': 0,
             'balance_end_real': end_balance,
+            'date': statement_date,
             # TODO : add real support for balances read from camt file
             }
         return currency, account_number, [vals_bank_statement]
