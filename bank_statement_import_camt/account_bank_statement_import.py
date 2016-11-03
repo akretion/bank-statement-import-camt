@@ -71,18 +71,24 @@ class AccountBankStatementImport(models.TransientModel):
             if type_str == 'OPBD':
                 balance_amt = balance.xpath('ns:Amt', namespaces={'ns': ns})
                 amount_str = balance_amt[0].text
-                start_balance = float(amount_str)
+                
+                # Check if debit or credit
+                balance_ind = balance.xpath('ns:CdtDbtInd', namespaces={'ns': ns})
+                balance_ind_str = balance_ind[0].text
+                if balance_ind[0].text == "CRDT":
+                    start_balance = float(amount_str)
+                if balance_ind[0].text == "DBIT":
+                    start_balance = (float(amount_str)) * -1
 
         currency = False
         transactions = []
         camt_entries = camt.xpath(
             '//ns:%s/ns:Ntry' % body_tag, namespaces={'ns': ns})
-        end_balance = 0.0
+        end_balance = start_balance
         for entry in camt_entries:
             entry_amt = entry.xpath('ns:Amt', namespaces={'ns': ns})
             amount_str = entry_amt[0].text
             amount = float(amount_str)
-            end_balance += amount
             entry_currency = entry.xpath('ns:Amt/@Ccy', namespaces={'ns': ns})
             line_currency = entry_currency[0].upper()
             if not currency:
@@ -117,6 +123,7 @@ class AccountBankStatementImport(models.TransientModel):
                 'unique_import_id':
                 u'%s-%s-%s-%s' % (date, amount, partner_name, label),
                 })
+            end_balance += amount
 
         vals_bank_statement = {
             'name': statement_name,
