@@ -8,7 +8,7 @@
 {
     'name': 'CAMT Bank Statements Import',
     'summary': 'Imports CAMT .052 and .053 XML files in Odoo',
-    'version': '9.0.1.0.2',
+    'version': '11.0.0.1',
     'license': 'AGPL-3',
     'author': 'Akretion, AbAKUS it-solutions',
     'website': 'http://www.akretion.com/; http://www.abakusitsolutions.eu',

@@ -3,12 +3,14 @@
 # © 2016 AbAKUS it-solutions
 # @author Alexis de Lattre <alexis.delattre@akretion.com>
 # @author Valentin Thirion <valentin.thirion@abakusitsolutions.eu>
+# Ported to Odoo 11.0 by Alexis Yushin <alexis@ww.net>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
+from odoo import models, fields, api
+from odoo.exceptions import Warning as UserError
 
 import logging
 from lxml import etree
-from openerp import models, api, _
-from openerp.exceptions import Warning as UserError
 
 
 _logger = logging.getLogger(__name__)
